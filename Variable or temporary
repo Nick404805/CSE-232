@@ -1,0 +1,16 @@
+bool ref_or_not(int& x)
+{                         https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+
+	return true;
+}
+
+bool ref_or_not(int const& x)
+{                         https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+
+	return false;
+}
+
+/*
+* https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+* https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+*/
