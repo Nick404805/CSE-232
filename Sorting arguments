@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::boolalpha;
+using std::vector;
+
+int sort_args(int &a, int &b, int &c)
+{
+	if (a > b)
+	{
+		std::swap(a, b);
+	}
+	if (b > c)
+	{
+		std::swap(b, c);
+	}
+	if (a > b)
+	{
+		std::swap(a, b);
+	}
+	return a, b, c;
+}
+ //https://en.cppreference.com/w/cpp/algorithm/swap
+ //https://www.cplusplus.com/reference/algorithm/swap/
+ //https://stackoverflow.com/questions/59991580/sorting-3-numbers-using-if-statements
