@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::getline;
+using std::string;
+using std::isdigit;
+
+int main()
+{
+	string str;
+	getline(cin, str); 
+	for (int i = 0; i < static_cast<int>(str.length()); i++) 
+	{
+		if (isdigit(str[i])) 
+		{
+			cout << str[i];
+		}
+	}
+}
+/*
+* //http://www.cplusplus.com/reference/string/string/getline/
+* //https://en.cppreference.com/w/cpp/language/static_cast
+* //https://www.cplusplus.com/reference/locale/isdigit/
+*/
