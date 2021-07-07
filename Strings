@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::string;
+
+int main()
+{
+	string str;
+	cin >> str;
+	char &c = str.back(); //https://en.cppreference.com/w/cpp/string/basic_string/back
+	char &x = str.front();
+	c = toupper(c); 
+	x = toupper(x); 
+	cout << str << " " << str.length(); 
+}
+/*
+* //https://en.cppreference.com/w/cpp/string/basic_string/back
+* //https://en.cppreference.com/w/cpp/string/basic_string/front
+* //https://en.cppreference.com/w/cpp/string/byte/toupper
+* //https://www.cplusplus.com/reference/string/string/length/
+*/
