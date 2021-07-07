@@ -1,0 +1,88 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <initializer_list>
+
+
+class OddVector
+{
+private:
+	std::vector<int> data;
+	bool add;
+	bool popback;
+public:
+	OddVector();
+	OddVector(std::initializer_list<int> args);
+	void push_back(int value);
+	int sum();
+	int size();
+	void pop_back();
+};
+
+OddVector::OddVector()
+{
+	add = true;
+	popback = true;
+}
+
+OddVector::OddVector(std::initializer_list<int> args)
+{
+	add = true;
+	popback = true;
+	for (auto i : args)
+	{
+		push_back(i);
+	}
+}
+void OddVector::push_back(int value)
+{
+	if (add)
+	{
+		if (find(data.begin(), data.end(), value) == data.end())
+		{
+			data.push_back(value);
+		}
+	}
+	add = !add;
+}
+
+int OddVector::sum()
+{
+	int result = 0;
+	for (int i = 0; i < data.size(); i++)
+	{
+		if (data[i] % 2 == 1) result += data[i];
+	}
+	return result;
+}
+
+int OddVector::size()
+{
+	return data.size();
+}
+
+void OddVector::pop_back()
+{
+	if (popback)
+	{
+		data.pop_back();
+	}
+	popback = !popback;
+}
+
+/*
+* https://www.cplusplus.com/doc/tutorial/classes/
+* https://www.cplusplus.com/doc/tutorial/templates/
+* https://www.cplusplus.com/doc/tutorial/classes2/
+* https://www.cplusplus.com/doc/tutorial/inheritance/
+* https://stackoverflow.com/questions/22763260/classes-and-objects-summing-the-data
+* https://stackoverflow.com/questions/17281932/size-of-c-classes
+* https://stackoverflow.com/questions/47142572/push-back-a-class-object-using-vector
+* https://www.learncpp.com/cpp-tutorial/constructor-member-initializer-lists/
+* https://en.cppreference.com/w/cpp/utility/initializer_list
+* https://www.w3schools.com/cpp/cpp_classes.asp
+* http://www.cplusplus.com/doc/tutorial/classes/
+* https://www.cplusplus.com/reference/vector/vector/pop_back/
+*/
