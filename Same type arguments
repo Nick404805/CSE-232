@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <stdarg.h> 
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::boolalpha;
+
+template<typename T, typename X>
+bool same_type(T x, X y)
+{
+	if (typeid(x) == typeid(y))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+/* 
+* https://en.cppreference.com/w/cpp/language/typeid
+* https://www.cplusplus.com/doc/oldtutorial/templates/
+*/
