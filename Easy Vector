@@ -1,0 +1,122 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <initializer_list>
+#include <iterator>
+#include <utility>
+#include <functional>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::vector;
+using std::initializer_list;
+using std::min;
+using std::plus;
+using std::multiplies;
+
+class Vector
+{
+private:
+	vector<int> data;
+public:
+	Vector(int n);
+	Vector(initializer_list<int> a_args);
+	Vector operator+(const Vector& b) const;
+	Vector operator+(int b) const;
+	Vector operator*(const Vector& b) const;
+	Vector operator*(int b) const;
+	friend bool operator ==(const Vector& lhs, const Vector& rhs);
+	friend bool operator !=(const Vector& lhs, const Vector& rhs);
+};
+
+Vector::Vector(int n)
+{
+	data.resize(n);
+}
+
+Vector::Vector(initializer_list<int> args)
+{
+	move(args.begin(), args.end(), std::back_inserter(data));
+}
+
+Vector Vector::operator+(const Vector& b) const
+{
+
+	Vector sum(min(data.size(), b.data.size()));
+	if (data.size() < b.data.size())
+	{
+		sum.data.assign(data.begin(), data.end());
+		transform(sum.data.begin(), sum.data.end(), b.data.begin(), sum.data.begin(), plus<int>());
+	}
+	else
+	{
+		sum.data.assign(b.data.begin(), b.data.end());
+		transform(sum.data.begin(), sum.data.end(), data.begin(), sum.data.begin(), plus<int>());
+	}
+	return sum;
+}
+
+Vector Vector::operator*(const Vector& b) const
+{
+	Vector sum(min(data.size(), b.data.size()));
+	if (data.size() < b.data.size())
+	{
+		sum.data.assign(data.begin(), data.end());
+		transform(sum.data.begin(), sum.data.end(), b.data.begin(), sum.data.begin(), multiplies<int>());
+	}
+	else
+	{
+		sum.data.assign(b.data.begin(), b.data.end());
+		transform(sum.data.begin(), sum.data.end(), data.begin(), sum.data.begin(), multiplies<int>());
+	}
+	return sum;
+}
+
+Vector Vector::operator+(int b) const
+{
+	Vector sum(data.size());
+	sum.data.assign(data.begin(), data.end());
+	transform(sum.data.begin(), sum.data.end(), sum.data.begin(), bind2nd(std::plus<int>(), b));
+	return sum;
+}
+
+Vector Vector::operator*(int b) const
+{
+	Vector sum(data.size());
+	sum.data.assign(data.begin(), data.end());
+	transform(sum.data.begin(), sum.data.end(), sum.data.begin(), bind2nd(std::multiplies<int>(), b));
+	return sum;
+}
+
+bool operator == (const Vector& lhs, const Vector& rhs)
+{
+	return lhs.data == rhs.data;
+}
+
+bool operator != (const Vector& lhs, const Vector& rhs)
+{
+	return !(lhs == rhs);
+}
+/*
+* https://en.cppreference.com/w/cpp/language/friend
+* https://www.geeksforgeeks.org/friend-class-function-cpp/
+* https://www.tutorialspoint.com/cplusplus/cpp_friend_functions.htm
+* https://www.cplusplus.com/doc/tutorial/inheritance/
+* https://www.programiz.com/cpp-programming/friend-function-class
+* https://en.cppreference.com/w/cpp/container/vector/assign
+* https://www.cplusplus.com/reference/vector/vector/assign/
+* https://www.geeksforgeeks.org/vector-assign-in-c-stl/
+* https://stackoverflow.com/questions/14977632/copying-stdvector-prefer-assignment-or-stdcopy
+* https://stackoverflow.com/questions/16449515/operator-overloading-c-adding-int-to-object
+* https://stackoverflow.com/questions/52376716/c-overloading-of-the-plus-operator
+* https://www.geeksforgeeks.org/transform-c-stl-perform-operation-elements/
+* https://www.geeksforgeeks.org/stdmultiplies-in-cpp/
+* https://stackoverflow.com/questions/10354886/simple-c-how-to-overload-the-multiplication-operator-so-that-floatmyclass-an
+* https://www.learncpp.com/cpp-tutorial/overloading-the-arithmetic-operators-using-friend-functions/
+* https://www.cplusplus.com/reference/iterator/back_inserter/
+* https://en.cppreference.com/w/cpp/iterator/back_inserter
+* https://en.cppreference.com/w/cpp/algorithm/min
+* https://en.cppreference.com/w/cpp/utility/move
+*/
