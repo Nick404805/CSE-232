@@ -1,0 +1,38 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+
+int main()
+{
+	int n;
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		for (int x = 1; x <= n - i; x++) 
+		{
+			cout << " ";
+		}
+		for (int j = i; j > 0; j--)
+		{
+			cout  << static_cast<char>('A' + j - 1);
+		}
+		for (int j = 2; j <= i; j++)
+		{
+			cout << static_cast<char>('A' + j - 1); 
+		}
+		cout << '\n';
+	}
+}
+
+/*
+* https://www.programiz.com/cpp-programming/nested-loops
+* http://www.trytoprogram.com/cpp-examples/cplusplus-program-to-print-star-pyramid-patterns/
+* https://www.geeksforgeeks.org/program-for-triangular-patterns-of-alphabets/
+* https://www.codesansar.com/python-programming-examples/print-A-BAB-CBABC-pattern.htm
+* https://www.wikimass.com/python/alphabet-pattern-14
+* https://stackoverflow.com/questions/18760080/how-to-create-a-pyramid-using-for-loop-in-c
+* https://www.w3schools.in/cplusplus-program/create-pyramid/
+* https://www.geeksforgeeks.org/program-for-triangular-patterns-of-alphabets/
+*/
