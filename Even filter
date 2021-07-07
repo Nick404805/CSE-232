@@ -1,0 +1,54 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+int filter(int* arr, int n)
+{
+	int x;
+
+	int right = 1;
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0)
+		{
+			continue;
+		}
+		while (right < n && arr[right] % 2 == 1)
+		{
+			right++;
+		}
+		if (n == right)
+		{
+			break;
+		}
+		x = arr[i];
+		arr[i] = arr[right];
+		arr[right] = x;
+	}
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0)
+		{
+			count++;
+		}
+		cout << arr[i] << " ";
+	}
+
+	return count;
+}
+
+/*
+* https://stackoverflow.com/questions/22810806/how-can-i-move-all-even-numbers-to-front-in-an-array
+* https://www.geeksforgeeks.org/segregate-even-and-odd-numbers/
+* https://stackoverflow.com/questions/42614070/removing-even-numbers-from-array-and-moving-odd-to-the-front
+* https://tkramesh.wordpress.com/2011/02/11/shifting-even-numbers-to-the-left-in-array-coding-in-c-6/
+* http://cplusplus.com/forum/general/16477/
+* https://www.codeproject.com/Questions/5262520/Cplusplus-function-to-reorder-even-elements-in-an
+* https://www.geeksforgeeks.org/continue-statement-cpp/
+* https://www.w3schools.com/cpp/cpp_break.asp
+* https://www.geeksforgeeks.org/reorder-a-array-according-to-given-indexes/
+* https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
+*/
