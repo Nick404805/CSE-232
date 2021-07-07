@@ -1,0 +1,94 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <set>
+#include <algorithm>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::set;
+
+
+class SmartSet
+{
+private:
+	set<int> data;
+public:
+	SmartSet();
+	void insert(int val);
+	int size();
+	int smallest();
+	int largest();
+	int sum();
+	template<class T> 
+	void insert(T val) 
+	{
+
+	};
+};
+
+SmartSet::SmartSet()
+{
+
+}
+
+
+void SmartSet::insert(int val)
+{
+	data.insert(val);
+}
+
+
+
+int SmartSet::size()
+{
+	return data.size();
+}
+
+int SmartSet::largest()
+{
+	int result = 0;
+	if (!data.empty())
+	{
+		result = *(data.rbegin());
+	}
+	return result;
+}
+
+int SmartSet::smallest()
+{
+	int result = 0;
+	if (!data.empty())
+	{
+		result = *data.begin();
+	}
+	return result;
+}
+
+
+int SmartSet::sum()
+{
+	int result = 0;
+	for (set<int>::iterator it = data.begin(); it != data.end(); ++it) 
+	{
+		result += *(it);
+	}
+	return result;
+}
+
+/*
+* https://www.cplusplus.com/doc/tutorial/classes/
+* https://www.cplusplus.com/doc/tutorial/templates/
+* https://www.cplusplus.com/doc/tutorial/classes2/
+* https://www.cplusplus.com/doc/tutorial/inheritance/
+* https://www.tutorialspoint.com/cplusplus/cpp_classes_objects.htm
+* https://www.programiz.com/cpp-programming/object-class
+* https://youtu.be/2vBzpgM4tR8
+* https://youtu.be/SwFl7vIzSYc
+* https://youtu.be/T66hC32E1f4
+* https://stackoverflow.com/questions/22763260/classes-and-objects-summing-the-data
+* https://stackoverflow.com/questions/17920107/array-classes-get-largest-and-smallest-value
+* http://cplusplus.com/forum/beginner/106407/
+* https://stackoverflow.com/questions/17281932/size-of-c-classes
+*/
