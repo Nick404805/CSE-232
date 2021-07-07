@@ -1,0 +1,45 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::vector;
+using std::sort;
+
+string uniq(string str)
+{
+	const int num = 256;
+	int x[num];
+	for (int i = 0; i < num; i++)
+	{
+		x[i] = 0;
+	}
+	for (int i = 0; i < str.length(); i++)
+	{
+		x[str[i]]++;
+	}
+	string result = "";
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (x[str[i]] == 1)
+		{
+			result += str[i];
+		}
+	}
+	sort(result.begin(), result.end());
+	reverse(result.begin(), result.end());
+	return result;
+}
+/*
+* https://en.cppreference.com/w/cpp/algorithm/reverse
+* https://stackoverflow.com/questions/11624682/how-to-store-the-first-256-ascii-characters-in-an-array
+* https://stackoverflow.com/questions/4951796/how-to-reverse-an-stdstring
+* https://en.cppreference.com/w/cpp/algorithm/sort
+* https://www.cplusplus.com/reference/string/string/length/
+* https://stackoverflow.com/questions/46134783/removing-duplicate-characters-from-string
+* https://stackoverflow.com/questions/50649912/remove-duplicate-character-in-string-and-make-unique-string
+* https://stackoverflow.com/questions/21121324/removing-duplicate-characters-from-string-using-stl
+*/
