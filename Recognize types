@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+template<typename T>
+std::string is_type(T x)
+{
+	if (std::is_same<int, T>::value)
+	{
+		string str1 = "int";
+		return str1;
+	}
+	else if (std::is_same<char,T>::value)
+	{
+		string str2 = "char";
+		return str2;
+	}
+	else if (std::is_same<bool,T>::value)
+	{
+		string str3 = "bool";
+		return str3;
+	}
+	else
+	{
+		string str4 = "unknown";
+		return str4;
+	}
+
+}
+/*
+* http://www.cplusplus.com/reference/type_traits/is_same/
+*/
+
