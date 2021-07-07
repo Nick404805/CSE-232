@@ -1,0 +1,36 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+int * copy_evens(int* arr, int n, int& arr_size)
+{
+	int k = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0)
+		{
+			k++;
+		}
+	}
+
+	int * evens = new int[k];
+	k = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0)
+		{
+			evens[k++] = arr[i];
+		}
+	}
+	arr_size = k;
+	return evens;
+}
+/*
+* https://www.cplusplus.com/reference/new/operator%20new/
+* https://en.cppreference.com/w/cpp/language/new
+* https://www.geeksforgeeks.org/pointers-c-examples/#:~:text=Pointers%20are%20symbolic%20representation%20of,address%20which%20holds%20int%20data
+* https://www.tutorialspoint.com/cplusplus/cpp_pointers.htm
+* https://www.w3schools.com/cpp/cpp_pointers.asp
+*/
