@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::endl;
+
+int main()
+{
+	int num1, result, num2, last;
+	cin >> num1 >> num2 >> last;
+	cout << num1 << " ";
+	for (int i = 0; i < (last - 1); i++)
+	{
+		result = num1 + num2; 
+		num1 = num2; 
+		num2 = result; 
+		cout << num1 << " ";
+	}
+}
+
+/*
+* https://en.wikipedia.org/wiki/Fibonacci_number
+* https://www.mathsisfun.com/numbers/fibonacci-sequence.html
+*/
