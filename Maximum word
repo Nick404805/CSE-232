@@ -1,0 +1,65 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <sstream>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::sort;
+using std::map;
+using std::getline;
+
+
+string max_word(string str)
+{
+	map<string, int> words;
+	std::stringstream ss(str); //https://www.cplusplus.com/reference/sstream/stringstream/stringstream/
+	string word;
+	while (getline(ss, word, ' '))
+	{
+		map<string, int>::iterator it = words.find(word);
+
+
+		if (it != words.end())
+		{
+			(*it).second++; //https://stackoverflow.com/questions/15451287/what-does-iterator-second-mean
+		}
+		else
+		{
+			words.insert(std::make_pair(word, 1));
+		}
+	}
+	int Count = 0;
+	word = "";
+	for (auto& i : words)
+	{
+		if (i.second > Count)
+		{
+			Count = i.second;
+			word = i.first;
+		}
+	}
+	return word;
+}
+
+/*
+* https://www.tutorialspoint.com/cplusplus/cpp_member_operators.htm
+* https://stackoverflow.com/questions/4113365/what-does-mean-in-c
+* https://en.cppreference.com/w/cpp/language/this
+* https://www.quora.com/What-does-mean-in-C-C++-programming
+* https://en.cppreference.com/w/cpp/string/basic_string/getline
+* https://www.cplusplus.com/reference/string/string/getline/
+* http://www.cplusplus.com/reference/algorithm/find/
+* http://www.cplusplus.com/reference/string/string/find/
+* https://en.cppreference.com/w/cpp/container/map
+* https://www.cplusplus.com/reference/map/map/
+* https://www.cplusplus.com/reference/vector/vector/insert/
+* https://thispointer.com/how-to-iterate-over-a-map-in-c/
+* https://www.cplusplus.com/reference/sstream/stringstream/stringstream/
+* https://www.cplusplus.com/reference/vector/vector/insert/
+* https://www.codegrepper.com/code-examples/cpp/c%2B%2B+iterator+first+second
+*/
