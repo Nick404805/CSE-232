@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <stdarg.h> 
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::boolalpha;
+
+int product()
+{
+	int i = 1;
+	return i;
+}
+
+template<typename T>
+T product(T p)
+{
+	return p;
+}
+
+template<typename T, typename... Args>
+T product(T x, Args... args)
+{
+	return x * product(args...);
+}
+
+/*
+* https://en.cppreference.com/w/cpp/language/fold
+*/
