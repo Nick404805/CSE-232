@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <regex>
+#include <set>
+using std::cin;
+using std::cout;
+using std::vector;
+using std::string;
+using std::set;
+
+set<int> common(set<int> &vec1, set<int> &vec2)
+{
+  set<int> result;
+  set_intersection(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), std::inserter(result, result.end()));
+	return result;
+}
+
+/*
+* https://stackoverflow.com/questions/5665058/error-when-using-set-union-and-set-intersection
+* https://en.cppreference.com/w/cpp/algorithm/set_intersection
+* https://www.tutorialspoint.com/cplusplus-program-to-implement-set-intersection-in-stl
+* https://en.cppreference.com/w/cpp/container/set
+* https://en.cppreference.com/w/cpp/algorithm/set_intersection
+*/
