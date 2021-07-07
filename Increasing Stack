@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <sstream>
+using std::cout;
+using std::cin;
+using std::vector;
+
+
+template <class T>
+class Stack
+{
+private:
+	vector<T> s;
+	int times;
+public:
+	Stack();
+	int size();
+	void push(T);
+	void pop();
+	T top();
+	int count(T);
+};
+
+template <class T>
+Stack<T>::Stack()
+{
+	times = 0;
+}
+
+template <class T>
+int Stack<T>::size()
+{
+	return s.size();
+}
+
+template <class T>
+void Stack<T>::push(T element)
+{
+	times++;
+	fill_n(back_inserter(s), times, element);
+}
+
+
+template <class T>
+void Stack<T>::pop()
+{
+	s.pop_back();
+}
+
+template <class T>
+T Stack<T>::top()
+{
+	return s.back();
+}
+
+template <class T>
+int Stack<T>::count(T element)
+{
+
+	return std::count(s.begin(), s.end(), element);
+}
+
+/*
+* https://codereview.stackexchange.com/questions/29331/template-vector-class
+* https://codereview.stackexchange.com/questions/195184/generic-array-vector-class-c
+* https://www.geeksforgeeks.org/program-to-create-custom-vector-class-in-c/
+* https://www.cplusplus.com/reference/vector/vector/pop_back/
+* https://www.geeksforgeeks.org/vectorpush_back-vectorpop_back-c-stl/
+* https://www.cplusplus.com/reference/vector/vector/back/
+* https://www.cplusplus.com/reference/iterator/back_inserter/
+* https://en.cppreference.com/w/cpp/iterator/back_inserter
+* http://www.cplusplus.com/reference/algorithm/fill_n/
+* https://en.cppreference.com/w/cpp/algorithm/count
+* https://stackoverflow.com/questions/16210707/c-vector-of-template-class
+* https://stackoverflow.com/questions/16843756/vector-of-templated-class
+*/
