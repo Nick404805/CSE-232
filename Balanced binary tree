@@ -1,0 +1,209 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using std::string;
+
+class Node
+{
+public:
+	int data;
+	Node* left;
+	Node* right;
+
+	Node(int newData)
+	{
+		data = newData;
+		left = NULL;
+		right = NULL;
+	}
+
+};
+
+class BinTree
+{
+private:
+	Node* root;
+	int count;
+	std::stringstream ss;
+
+	Node* insert(Node* root, int data)
+	{
+		if (root == NULL) {
+			root = new Node(data);
+			return root;
+		}
+
+		Node* q[1000];
+		int start = 0, end = 0;
+
+		q[end++] = root;
+
+		while (start < end) {
+			Node* temp = q[start++];
+
+
+			if (temp->left != NULL)
+			{
+				q[end++] = temp->left;
+			}
+			else
+			{
+				temp->left = new Node(data);
+				return root;
+			}
+
+			if (temp->right != NULL)
+			{
+				q[end++] = temp->right;
+			}
+			else
+			{
+				temp->right = new Node(data);
+				return root;
+			}
+		}
+		return root;
+	}
+
+	Node* leftmost_leaf(Node* node)
+	{
+		if (node == NULL)
+		{
+			return NULL;
+		}
+		if (node->left != NULL)
+		{
+
+			return leftmost_leaf(node->left);
+		}
+		return node;
+	}
+
+	Node* righttmost_leaf(Node* node)
+	{
+		if (node == NULL)
+		{
+			return NULL;
+		}
+		if (node->right != NULL) 
+		{ 
+			return righttmost_leaf(node->right); 
+		}
+		return node;
+	}
+
+	void prefix(Node* node)
+	{
+		if (node != NULL)
+		{
+			ss << node->data;
+			prefix(node->left);
+			prefix(node->right);
+		}
+	}
+
+	void postfix(Node* node)
+	{
+		if (node != NULL)
+		{
+			postfix(node->left);
+			postfix(node->right);
+			ss << node->data;
+		}
+	}
+
+	void infix(Node* node)
+	{
+		if (node != NULL)
+		{
+			infix(node->left);
+			ss << node->data;
+			infix(node->right);
+
+		}
+	}
+
+	void destroy(Node* node)
+	{
+		if (node)
+		{
+			destroy(node->left);
+			destroy(node->right);
+			delete node;
+		}
+	}
+public:
+	BinTree()
+	{
+		root = NULL;
+		count = 0;
+	}
+
+	~BinTree()
+	{
+		destroy(root);
+	}
+
+	void insert(int newData)
+	{
+		root = insert(root, newData);
+		count++;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	int leftmost_leaf()
+	{
+		Node* node = leftmost_leaf(root);
+		return node->data;
+	}
+
+	int righttmost_leaf()
+	{
+		Node* node = righttmost_leaf(root);
+		return node->data;
+	}
+
+	std::string prefix()
+	{
+		ss.str(std::string());
+		prefix(root);
+		return ss.str();
+	}
+
+	std::string postfix()
+	{
+		ss.str(std::string());
+		postfix(root);
+		return ss.str();
+	}
+
+	std::string infix()
+	{
+		ss.str(std::string());
+		infix(root);
+		return ss.str();
+	}
+
+};
+
+/*
+* https://stackoverflow.com/questions/34170164/destructor-for-binary-search-tree
+* https://stackoverflow.com/questions/20731/how-do-you-clear-a-stringstream-variable
+* https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+* https://www.geeksforgeeks.org/insertion-in-a-binary-tree-in-level-order/
+* https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
+* https://www.bitdegree.org/learn/linked-list-c-plus-plus
+* https://stackoverflow.com/questions/41641971/c-pointer-node
+* https://www.geeksforgeeks.org/linked-list-set-1-introduction/
+* http://www.tulane.edu/~mpuljic/cpp/savitch/chapter15.pdf
+* https://www.learn-cpp.org/en/Linked_lists
+* https://en.wikipedia.org/wiki/Binary_tree
+* https://en.wikipedia.org/wiki/Tree_traversal
+* https://www.cplusplus.com/reference/sstream/stringstream/stringstream/
+* https://www.softwaretestinghelp.com/stringstream-class-in-cpp/
+* http://www.cplusplus.com/articles/LACRko23/
+*/
