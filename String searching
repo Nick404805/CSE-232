@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
+using std::getline;
+
+void stringPrinting(string &str)
+{
+	int count = 0;
+	for (auto i = 0; i < str.length(); i++)
+	{
+		if (isdigit(str[i])) 
+		{
+			count++;
+		}
+	}	
+	auto x = str.find_first_of("1234567890"); 
+	auto y = str.find_last_of("1234567890"); 
+	cout << "Number of digits: " << count << endl;
+	cout << "Position of first digit: " << x << endl;
+	cout << "Position of last digit: " << y << endl;
+}
+
+
+
+int main()
+{
+	string str;
+	getline(cin, str);
+	stringPrinting(str);
+}
+/*
+* https://www.cplusplus.com/reference/cctype/isdigit/
+* https://www.cplusplus.com/reference/string/string/find_first_of/
+* https://www.cplusplus.com/reference/string/string/find_last_of/
+*/
