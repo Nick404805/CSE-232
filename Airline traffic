@@ -1,0 +1,194 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <queue>
+
+class Airline {
+private:
+	std::set<std::string> cities;
+	std::multimap<std::string, std::string> flight;
+public:
+	void add_city(std::string city);
+	int cities_available();
+	bool services_city(std::string city);
+	void remove_city(std::string city);
+	void add_flight(std::string city1, std::string city2);
+	bool has_direct_flight(std::string city1, std::string city2);
+	void remove_flight(std::string city1, std::string city2);
+	int num_cities_connected_to(std::string city);
+	bool are_connected(std::string city1, std::string city2);
+	int shortest_distance(std::string city1, std::string city2);
+};
+
+void Airline::add_city(std::string city)
+{
+	cities.insert(city);
+}
+
+int Airline::cities_available()
+{
+	return cities.size();
+}
+
+bool Airline::services_city(std::string city)
+{
+	return cities.find(city) != cities.end();
+}
+void Airline::remove_city(std::string city)
+{
+	cities.erase(city);
+}
+
+void Airline::add_flight(std::string city1, std::string city2)
+{
+	cities.insert(city1);
+	cities.insert(city2);
+	flight.insert({ city1, city2 });
+	flight.insert({ city2, city1 });
+}
+
+bool Airline::has_direct_flight(std::string city1, std::string city2)
+{
+	for (auto it = flight.begin(); it != flight.end(); ++it)
+	{
+		if ((*it).first == city1 && (*it).second == city2)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Airline::remove_flight(std::string city1, std::string city2)
+{
+	for (auto it = flight.begin(); it != flight.end(); ++it)
+	{
+		if ((*it).first == city1 && (*it).second == city2)
+		{
+			flight.erase(it);
+			break;
+		}
+	}
+	for (auto it = flight.begin(); it != flight.end(); ++it)
+	{
+		if ((*it).first == city2 && (*it).second == city1)
+		{
+			flight.erase(it);
+			break;
+		}
+	}
+
+}
+
+int Airline::num_cities_connected_to(std::string city)
+{
+	if (cities.find(city) == cities.end())
+	{
+		return -1;
+	}
+	auto it = flight.equal_range(city);
+	int count = 0;
+	for (auto itr = it.first; itr != it.second; ++itr)
+	{
+		count++;
+	}
+	return count;
+}
+
+bool Airline::are_connected(std::string city1, std::string city2)
+{
+	if (cities.find(city1) == cities.end() || cities.find(city2) == cities.end())
+	{
+		return false;
+	}
+	std::set<std::string> visited;
+	visited.insert(city1);
+	std::queue<std::string> q;
+	q.push(city1);
+	while (!q.empty())
+	{
+		std::string s = q.front();
+		q.pop();
+		auto it = flight.equal_range(s);
+
+		for (auto itr = it.first; itr != it.second; ++itr) 
+		{
+			std::string neighbor = itr->second;
+			if (neighbor == city2)
+			{
+				return true;
+			}
+			else if (visited.find(neighbor) == visited.end())
+			{
+				visited.insert(neighbor);
+				q.push(neighbor);
+			}
+		}
+	}
+	return false;
+}
+
+int Airline::shortest_distance(std::string city1, std::string city2)
+{
+	if (cities.find(city1) == cities.end() || cities.find(city2) == cities.end())
+	{
+		return -1;
+	}
+	std::set<std::string> visited;
+	visited.insert(city1);
+	std::queue<std::pair<std::string, int>> q;
+	q.push({ city1,0 });
+	int count = 0;
+	while (!q.empty())
+	{
+		std::pair<std::string, int> p = q.front();
+		std::string s = p.first;
+		int step = p.second;
+		q.pop();
+		auto it = flight.equal_range(s);
+
+		for (auto itr = it.first; itr != it.second; ++itr) 
+		{
+			std::string neighbor = itr->second;
+			if (neighbor == city2)
+			{
+				return step + 1;
+			}
+			else if (visited.find(neighbor) == visited.end())
+			{
+				visited.insert(neighbor);
+				q.push({ neighbor,step + 1 });
+			}
+		}
+	}
+	return -1;
+}
+
+/*
+* https://cp-algorithms.com/graph/breadth-first-search.html
+* https://en.wikipedia.org/wiki/Breadth-first_search
+* https://www.programiz.com/dsa/graph-bfs
+* https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+* https://www.cplusplus.com/doc/tutorial/classes/
+* https://www.cplusplus.com/doc/tutorial/templates/
+* https://www.cplusplus.com/doc/tutorial/classes2/
+* https://www.cplusplus.com/doc/tutorial/inheritance/
+* https://stackoverflow.com/questions/22763260/classes-and-objects-summing-the-data
+* https://stackoverflow.com/questions/17281932/size-of-c-classes
+* https://stackoverflow.com/questions/47142572/push-back-a-class-object-using-vector
+* https://www.learncpp.com/cpp-tutorial/constructor-member-initializer-lists/
+* https://en.cppreference.com/w/cpp/container/multimap
+* https://www.cplusplus.com/reference/map/multimap/
+* https://www.w3schools.com/cpp/cpp_classes.asp
+* http://www.cplusplus.com/doc/tutorial/classes/
+* https://www.cplusplus.com/reference/queue/queue/push/
+* http://www.cplusplus.com/reference/map/multimap/insert/
+* http://www.cplusplus.com/reference/set/set/find/
+* https://www.softwaretestinghelp.com/cpp-bfs-program-to-traverse-graph/
+* https://13dipty.medium.com/bfs-implementation-in-c-495931323710
+* https://stackoverflow.com/questions/63566242/bfs-implementation-c
+*/
