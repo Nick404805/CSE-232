@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::boolalpha;
+
+bool is_pal(int x);
+bool is_prime(int x);
+
+bool is_pal_prime(int x)
+{
+	bool a = is_pal(x);
+	bool b = is_prime(x);
+	if (a == true && b == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool is_prime(int x)
+{
+	for (int i = 2; i <= (x/2) ; i++) //https://stackoverflow.com/questions/50930926/how-to-check-if-a-number-is-prime-in-a-more-efficient-manner
+	{
+		if (x == 2) //https://stackoverflow.com/questions/50930926/how-to-check-if-a-number-is-prime-in-a-more-efficient-manner
+		{
+			return false;
+		}
+		else if (x % i == 0) //https://www.programiz.com/cpp-programming/examples/prime-number
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+
+bool is_pal(int x)
+{
+	string str = std::to_string(x);
+	int j = str.length() - 1; ////https://stackoverflow.com/questions/8362572/check-if-a-string-is-palindrome
+	for (auto i = 0; i < str.length(); i++)
+	{
+		if (str[i] != str[j]) //https://stackoverflow.com/questions/8362572/check-if-a-string-is-palindrome
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+}
+
+/*
+* https://stackoverflow.com/questions/8362572/check-if-a-string-is-palindrome
+* https://www.programiz.com/cpp-programming/examples/prime-number
+* https://stackoverflow.com/questions/4424374/determining-if-a-number-is-prime
+* https://stackoverflow.com/questions/17432094/prime-number-c-program
+* https://www.javatpoint.com/prime-number-program-in-cpp
+*/
