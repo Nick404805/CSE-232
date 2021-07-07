@@ -1,0 +1,11 @@
+template<class... Args>
+size_t count_args(Args... args) 
+{
+	return sizeof...(Args);
+}
+/*
+* https://en.cppreference.com/w/cpp/language/sizeof...
+* https://stackoverflow.com/questions/3628364/count-of-parameters-in-a-parameter-pack-is-there-a-c0x-std-lib-function-for-t
+* https://en.cppreference.com/w/cpp/language/parameter_pack
+* https://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/language/sizeof....html
+*/
