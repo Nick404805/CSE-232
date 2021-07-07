@@ -1,0 +1,35 @@
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::endl;
+
+int main()
+{
+	int num;
+	cin >> num;
+	int lastNum = num % 10;
+	if (num % 2 == 0)
+	{
+		cout << num << " is even" << endl;
+	}
+	else
+	{
+		cout << num << " is odd" << endl;
+	}
+	if (lastNum < 0  || lastNum > 0)
+	{
+		cout << "The last digit of " << num << " is " << std::abs(lastNum) << "\n"; 
+	}
+	if (num > 0)
+	{
+		cout << num << " is positive";
+	}
+	else if (num < 0)
+	{
+		cout << num << " is negative";
+	}
+}
+/*
+* //http://www.cplusplus.com/forum/beginner/49775/
+* //https://www.cplusplus.com/reference/cmath/abs/
+*/
