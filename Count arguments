@@ -1,0 +1,23 @@
+int count_args(int x)
+{
+	int total = 1;
+	return total;
+}
+int count_args(int x, int y)
+{
+	int total =  2;
+	return total;
+}
+
+int count_args(int x, int y, int z)
+{
+	int total = 3;
+	return total;
+}
+
+/*
+* https://beginnersbook.com/2017/08/cpp-function-overloading/
+* https://www.cplusplus.com/doc/tutorial/functions2/
+* https://www.geeksforgeeks.org/function-overloading-c/
+* https://en.wikipedia.org/wiki/Function_overloading
+*/
