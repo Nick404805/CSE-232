@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+bool is_undulating(int x)
+{
+	string str = std::to_string(x); //converting int to string
+	for (auto i = 4; i < str.length(); i++) //i starting at 4, i isnt greater than string length, i++
+	{
+		if (str.length() < 2) //string length cannot be less than two
+		{
+			return false;
+		}
+		else if (str[i - 2] < str[i]) // checks if i - 2 is less than i
+		{
+			return false;
+		}
+		else
+		{
+			return true; //if not false, returns true
+		}
+	}
+
+}
+
+/*
+* https://en.wikipedia.org/wiki/Undulating_number
+* https://amp.ww.en.freejournal.org/2163279/1/undulating-number.html
+* https://stackoverflow.com/questions/67012256/program-to-determine-weather-an-integer-is-undulating
+* https://www.geeksforgeeks.org/undulating-numbers/
+* https://www.cplusplus.com/reference/string/to_string/
+*/
