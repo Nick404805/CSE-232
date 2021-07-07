@@ -1,0 +1,42 @@
+#include <iostream>
+#include <regex>
+#include <set>
+#include <list>
+#include <string_view>
+#include <regex>
+
+using std::cin;
+using std::cout;
+using std::vector;
+using std::string;
+using std::set;
+using std::list;
+using std::regex;
+
+int first_divider(vector<int>& vecInt)
+{
+	int& i = vecInt.at(0);
+	auto is_divisible = [&](int x)
+	{
+		if (x % i == 0 && x != i)
+		{
+			return i;
+		}
+		else
+		{
+			return 0;
+		}
+	};
+
+	auto result = std::find_if(vecInt.begin(), vecInt.end(), is_divisible);
+	return *result;
+}
+
+/*
+* https://www.cplusplus.com/reference/algorithm/find_if/
+* http://www.java2s.com/Code/Cpp/STL-Algorithms-Non-modifying-sequence-operations/Usefindiftofindfirstelementdivisibleby3.htm
+* https://en.cppreference.com/w/cpp/algorithm/ranges/find
+* https://en.cppreference.com/w/cpp/algorithm/for_each
+* https://www.cplusplus.com/reference/algorithm/for_each/
+* https://www.cplusplus.com/reference/vector/vector/at/
+*/
