@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using std::cout;
+using std::cin;
+using std::stoi;
+
+void repeat(std::string &s1) // input argument
+{
+	for (auto i = 0; i < 1; i++) // iterates until i is less than 1, i increment
+	{
+		s1 += s1; // s1 is adding to itself ( s1 = s1 + s1)
+	}
+}
+
+/*
+* https://stackoverflow.com/questions/33838622/how-to-loop-through-a-string-and-replace-parts-within-it-c
+* https://www.tutorialspoint.com/program-to-loop-on-every-character-in-string-in-cplusplus
+* https://stackoverflow.com/questions/9438209/for-every-character-in-string
+* https://www.delftstack.com/howto/cpp/iterate-through-string-cpp/
+*/
