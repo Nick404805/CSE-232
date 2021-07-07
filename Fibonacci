@@ -1,0 +1,8 @@
+int fib( int &x, int &y)
+{
+  int first = x;
+  int second = y;
+  x = y;
+  y = first + second;
+  return first;
+}
