@@ -1,0 +1,86 @@
+#include <iostream>
+#include <regex>
+#include <set>
+#include <list>
+#include <string_view>
+#include <regex>
+#include <functional>
+#include <algorithm>
+#include <locale>
+#include <utility>
+
+using std::cin;
+using std::cout;
+using std::vector;
+using std::string;
+using std::set;
+using std::list;
+using std::regex;
+
+vector<string> sort_digit(vector<string>& sort)
+{
+	std::sort(sort.begin(), sort.end(), [](const auto& a, const auto& b) 
+		{ 
+			return std::stoi(a) < std::stoi(b); 
+		});
+	return sort;
+}
+
+vector<string> erase(vector<string>& s)
+{
+	string x = "";
+	std::remove(s.begin(), s.end(), x);
+	return s;
+}
+
+string partition(string& s)
+{
+	std::partition(s.begin(), s.end(), [](char c)
+		{
+			return true;
+		});
+	cout << "partition: " << s << " "; //testing
+	return s;
+}
+
+string remove_alpha(std::string& str)
+{
+	str.erase(std::remove_if(std::begin(str), std::end(str), [&](char& c)
+		{
+			if (!isdigit(c))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}), std::end(str));
+	partition(str);
+	return str;
+}
+
+void strip_sort(vector<string>& vecStr)
+{
+	std::transform(vecStr.begin(), vecStr.end(), vecStr.begin(), remove_alpha);
+	erase(vecStr);
+	vecStr.pop_back();
+	sort_digit(vecStr);
+}
+
+/*
+* https://stackoverflow.com/questions/54818185/sorting-vectors-of-string-containing-both-numbers-and-words
+* https://www.delftstack.com/howto/cpp/sort-strings-alphabetically-in-cpp/
+* https://stackoverflow.com/questions/39255148/how-can-i-sort-a-string-with-integers-in-c
+* https://stackoverflow.com/questions/22281962/c11-sorting-list-using-lambda
+* https://en.cppreference.com/w/cpp/algorithm/transform
+* https://www.cplusplus.com/reference/algorithm/transform/
+* https://www.cplusplus.com/reference/vector/vector/pop_back/
+* https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
+* https://www.cplusplus.com/reference/cctype/isdigit/
+* https://en.cppreference.com/w/cpp/algorithm/partition
+* http://www.cplusplus.com/reference/algorithm/partition/
+* https://en.cppreference.com/w/cpp/algorithm/remove
+* https://en.cppreference.com/w/cpp/algorithm/sort
+* https://en.cppreference.com/w/cpp/string/basic_string/stol
+*/
