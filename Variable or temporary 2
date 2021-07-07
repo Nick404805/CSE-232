@@ -1,0 +1,18 @@
+template<typename T>
+bool ref_or_not(T& x)
+{                        
+	return true;
+}
+
+template<typename T>
+bool ref_or_not(T const& x)
+{                         
+
+	return false;
+}
+
+/*
+* https://www.cplusplus.com/doc/oldtutorial/templates/
+* https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+* https://stackoverflow.com/questions/24028621/how-to-check-if-object-is-const-or-not/24028924
+*/
